@@ -1,0 +1,24 @@
+name: TW-Ore
+version: 1.0.0
+main: com.github.devotedmc.hiddenore.HiddenOre
+author: Soerxpso
+authors: [ProgrammerDan, zune]
+load: STARTUP
+api-version: 1.12
+commands:
+   hiddenore:
+      description: HiddenOre allows the hiding of cool drops underground. This reloads the config.
+      usage: |
+       /hiddenore    -- reloads
+       /hiddenore save -- forces save of tracking
+       /hiddenore generate [num] -- drops all drops near the player issuing the command, use sparingly. 
+      permission: hiddenore.adv
+permissions:
+    hiddenore.*:
+      description: Gives access to all HiddenOre commands
+      default: op
+      children:
+        hiddenore.adv: true
+    hiddenore.adv:
+      description: Allows access to  HiddenOre commands.
+      default: op
