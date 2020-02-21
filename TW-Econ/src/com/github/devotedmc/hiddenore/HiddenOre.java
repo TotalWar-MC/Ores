@@ -6,10 +6,6 @@ import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -27,7 +23,6 @@ public class HiddenOre extends JavaPlugin {
 
 	private static BreakTracking tracking;
 	private BukkitTask trackingSave;
-	private BukkitTask trackingMapSave;
 	
 	private static BlockBreakListener breakHandler;
 	private static ExploitListener exploitHandler;
@@ -48,13 +43,6 @@ public class HiddenOre extends JavaPlugin {
 				tracking.save();
 			}
 		}, Config.trackSave, Config.trackSave);
-
-		trackingMapSave = Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, new Runnable() {
-			public void run() {
-				tracking.saveMap();
-			}
-		}, Config.mapSave, Config.mapSave);
-
 		
 		exploitHandler = new ExploitListener(plugin);
 		this.getServer().getPluginManager().registerEvents(exploitHandler, this);
@@ -80,10 +68,8 @@ public class HiddenOre extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
-		trackingSave.cancel();
-		trackingMapSave.cancel();
 		tracking.save();
-		tracking.saveMap();
+		trackingSave.cancel();
 	}
 
 	public static HiddenOre getPlugin() {
