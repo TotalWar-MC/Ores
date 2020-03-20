@@ -1,0 +1,25 @@
+name: TW-Ore
+version: 1.0.0
+main: com.steffbeard.totalwar.ore.HiddenOre
+author: Soerxpso
+authors: [ProgrammerDan, Steffbeard]
+load: STARTUP
+website: https://www.totalwarremastered.tk/ 
+description: Built on the code of HiddenOre, TW-Ores plans to bringing real world ore distribuition to Minecraft.
+commands:
+   hiddenore:
+      description: HiddenOre allows the hiding of cool drops underground. This reloads the config.
+      usage: |
+       /hiddenore    -- reloads
+       /hiddenore save -- forces save of tracking
+       /hiddenore generate [num] -- drops all drops near the player issuing the command, use sparingly. 
+      permission: hiddenore.adv
+permissions:
+    hiddenore.*:
+      description: Gives access to all HiddenOre commands
+      default: op
+      children:
+        hiddenore.adv: true
+    hiddenore.adv:
+      description: Allows access to  HiddenOre commands.
+      default: op
